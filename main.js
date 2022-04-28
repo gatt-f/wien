@@ -45,3 +45,6 @@ sightLayer.addTo(map);
 L.control.scale({
     imperial: false,
 }).addTo(map);
+
+// Fullscreen-Funktion hinzugefügt
+L.control.fullscreen().addTo(map);
