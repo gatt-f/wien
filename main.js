@@ -1,7 +1,7 @@
 /* OGD Wien Beispiel */
 
 let stephansdom = {
-    lat: 48.208493, 
+    lat: 48.208493,
     lng: 16.373118,
     title: "Stephansdom"
 };
@@ -9,7 +9,7 @@ let stephansdom = {
 let startLayer = L.tileLayer.provider("BasemapAT.grau");
 
 let map = L.map("map", {
-    center: [ stephansdom.lat, stephansdom.lng ],
+    center: [stephansdom.lat, stephansdom.lng],
     zoom: 12,
     layers: [
         startLayer
@@ -51,5 +51,7 @@ L.control.fullscreen().addTo(map);
 
 // Mini-Map einbinden
 let miniMap = new L.Control.MiniMap(
-    L.tileLayer.provider("BasemapAT")
+    L.tileLayer.provider("BasemapAT"), {
+        toggleDisplay: true
+    }
 ).addTo(map);
