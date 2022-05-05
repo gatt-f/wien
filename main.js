@@ -72,14 +72,14 @@ async function loadSites(url) {
     L.geoJSON(geojson).addTo(overlay);
 }
 
-// Stops
+// Haltestellen Vienna-Sightseeing
 async function loadStops(url) {
     let response = await fetch(url);
     let geojson = await response.json();
     // console.log(geojson);
 
     let overlay = L.featureGroup()
-    layerControl.addOverlay(overlay, "Stops");
+    layerControl.addOverlay(overlay, "Haltestellen Vienna-Sightseeing");
     overlay.addTo(map);
 
     L.geoJSON(geojson).addTo(overlay);
