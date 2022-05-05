@@ -69,7 +69,11 @@ async function loadSites(url) {
     layerControl.addOverlay(overlay, "Sehenswürdigkeiten");
     overlay.addTo(map);
 
-    L.geoJSON(geojson).addTo(overlay);
+    L.geoJSON(geojson, {
+        pointToLayer: function(geoJsonPoint, latlng){
+            return L.marker(latlng);
+        }
+    }).addTo(overlay);
 }
 
 // Haltestellen Vienna Sightseeing
