@@ -98,14 +98,14 @@ async function loadLines(url) {
     L.geoJSON(geojson).addTo(overlay);
 }
 
-// Fußgängerzone Wien
+// Fußgängerzonen Wien
 async function loadZones(url) {
     let response = await fetch(url);
     let geojson = await response.json();
     // console.log(geojson);
 
     let overlay = L.featureGroup()
-    layerControl.addOverlay(overlay, "Fußgängerzone Wien");
+    layerControl.addOverlay(overlay, "Fußgängerzonen Wien");
     overlay.addTo(map);
 
     L.geoJSON(geojson).addTo(overlay);
