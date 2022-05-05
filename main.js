@@ -111,7 +111,7 @@ async function loadStops(url) {
             `;
             return L.marker(latlng, {
                 icon: L.icon({
-                    iconUrl: "icons/bus.png",
+                    iconUrl: `icons/bus_${geoJsonPoint.properties.LINE_ID}.png`,
                     iconAnchor: [16, 37],
                     popupAnchor: [0, -37]
                 })
