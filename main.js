@@ -159,7 +159,7 @@ async function loadHotels(url) {
     L.geoJSON(geojson, {
         pointToLayer: function (geoJsonPoint, latlng) {
             //L.marker(latlng).addTo(map)
-            console.log(geoJsonPoint.properties);
+            //console.log(geoJsonPoint.properties);
             let popup = `
                 <strong>${geoJsonPoint.properties.BETRIEB}</strong><br>
                 Betriebsart: ${geoJsonPoint.properties.BETRIEBSART_TXT}
@@ -174,7 +174,7 @@ async function loadHotels(url) {
         }
     }).addTo(overlay);
 
-   // L.geoJSON(geojson).addTo(overlay);
+    // L.geoJSON(geojson).addTo(overlay);
 }
 
 loadSites("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
