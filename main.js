@@ -111,14 +111,14 @@ async function loadZones(url) {
     L.geoJSON(geojson).addTo(overlay);
 }
 
-// Hotels Wien
+// Hotels und Unterkünfte
 async function loadHotels(url) {
     let response = await fetch(url);
     let geojson = await response.json();
     // console.log(geojson);
 
     let overlay = L.featureGroup()
-    layerControl.addOverlay(overlay, "Hotels Wien");
+    layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
     overlay.addTo(map);
 
     L.geoJSON(geojson).addTo(overlay);
