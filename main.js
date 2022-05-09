@@ -148,9 +148,9 @@ async function loadZones(url) {
 
 // Hotels und Unterkünfte
 async function loadHotels(url) {
-        let response = await fetch(url);
-        let geojson = await response.json();
-        console.log(geojson);
+    let response = await fetch(url);
+    let geojson = await response.json();
+    console.log(geojson);
 
     /*Workload 6: Franz Gatt
     
@@ -185,15 +185,15 @@ async function loadHotels(url) {
     A Appartment, Farbe PURPLE - #B10DC9, Icon apartment-2
     */
 
-        let overlay = L.featureGroup()
-        layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
-        overlay.addTo(map);
+    let overlay = L.featureGroup()
+    layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
+    overlay.addTo(map);
 
-        L.geoJSON(geojson, {
-                    pointToLayer: function (geoJsonPoint, latlng) {
-                            //L.marker(latlng).addTo(map)
-                            //console.log(geoJsonPoint.properties);
-                            let popup = `
+    L.geoJSON(geojson, {
+        pointToLayer: function (geoJsonPoint, latlng) {
+            //L.marker(latlng).addTo(map)
+            //console.log(geoJsonPoint.properties);
+            let popup = `
                 <strong>${geoJsonPoint.properties.BETRIEB}</strong><br>
                 Betriebsart: ${geoJsonPoint.properties.BETRIEBSART_TXT}<br>
                 Kategorie: ${geoJsonPoint.properties.KATEGORIE_TXT}<br>
@@ -202,7 +202,7 @@ async function loadHotels(url) {
                 E-Mail: <a href ="mailto:${geoJsonPoint.properties.KONTAKT_EMAIL}">${geoJsonPoint.properties.KONTAKT_EMAIL}</a><br>
                 Link zur <a href = "${geoJsonPoint.properties.WEBLINK1}">Homepage</a>
             `;
-            if (geoJsonPoint.properties.BETRIEBSART == "H"){
+            if (geoJsonPoint.properties.BETRIEBSART == "H") {
                 return L.marker(latlng, {
                     icon: L.icon({
                         iconUrl: `icons/hotel_0star.png`,
@@ -210,7 +210,7 @@ async function loadHotels(url) {
                         popupAnchor: [0, -37]
                     })
                 }).bindPopup(popup);
-            } else if (geoJsonPoint.properties.BETRIEBSART == "P"){
+            } else if (geoJsonPoint.properties.BETRIEBSART == "P") {
                 return L.marker(latlng, {
                     icon: L.icon({
                         iconUrl: `icons/lodging_0star.png`,
