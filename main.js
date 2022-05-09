@@ -150,7 +150,33 @@ async function loadZones(url) {
 async function loadHotels(url) {
     let response = await fetch(url);
     let geojson = await response.json();
-    // console.log(geojson);
+    console.log(geojson);
+
+    /*ADRESSE: "04., Wiedner Hauptstraße 27-29"
+    BETRIEB: "Erzherzog Rainer - Schick Hotels"
+    BETRIEBSART: "H"
+    BETRIEBSART_TXT: "Hotel"
+    BEZIRK: 4
+    KATEGORIE_TXT: "4*"
+    KONTAKT_EMAIL: "rainer@schick-hotels.com"
+    KONTAKT_TEL: "+43 1 221 11"
+    OBJECTID: 182577
+    SE_ANNO_CAD_DATA: null
+    WEBLINK1: "www.hotelerzherzograiner.wien"
+    das Popup soll den Namen des Betriebs, Betriebsart, Kategorie, Adresse, Telefonnummer sowie zwei Links zur E-Mailadresse und zur Homepage enthalten
+    
+    let statusColor;
+    if (hut.open == true) {
+        statusColor = "green";
+    } else {
+        statusColor = "red";
+    }
+
+    L.circleMarker([hut.lat, hut.lng], {
+        color: statusColor,
+        radius: 50,
+    }).addTo(map).bindPopup(popup);
+    */
 
     let overlay = L.featureGroup()
     layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
@@ -162,7 +188,12 @@ async function loadHotels(url) {
             //console.log(geoJsonPoint.properties);
             let popup = `
                 <strong>${geoJsonPoint.properties.BETRIEB}</strong><br>
-                Betriebsart: ${geoJsonPoint.properties.BETRIEBSART_TXT}
+                Betriebsart: ${geoJsonPoint.properties.BETRIEBSART_TXT}<br>
+                Kategorie: ${geoJsonPoint.properties.KATEGORIE_TXT}<br>
+                Adresse: ${geoJsonPoint.properties.ADRESSE}<br>
+                Telefonnummer: ${geoJsonPoint.properties.KONTAKT_TEL}<br>
+                E-Mail: ${geoJsonPoint.properties.KONTAKT_EMAIL}<br>
+                Homepage: ${geoJsonPoint.properties.WEBLINK1}<br>
             `;
             return L.marker(latlng, {
                 icon: L.icon({
