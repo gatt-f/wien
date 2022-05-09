@@ -199,8 +199,8 @@ async function loadHotels(url) {
                 Kategorie: ${geoJsonPoint.properties.KATEGORIE_TXT}<br>
                 Adresse: ${geoJsonPoint.properties.ADRESSE}<br>
                 Telefonnummer: ${geoJsonPoint.properties.KONTAKT_TEL}<br>
-                <a href ="E-Mail: ${geoJsonPoint.properties.KONTAKT_EMAIL}">${geoJsonPoint.properties.KONTAKT_EMAIL}</a><br>
-                <a href = "Homepage: ${geoJsonPoint.properties.WEBLINK1}"></a><br>
+                E-Mail: <a href ="mailto:${geoJsonPoint.properties.KONTAKT_EMAIL}">${geoJsonPoint.properties.KONTAKT_EMAIL}</a><br>
+                Link zur <a href = "${geoJsonPoint.properties.WEBLINK1}">Homepage</a>
             `;
             if (geoJsonPoint.properties.BETRIEBSART == "H"){
                 return L.marker(latlng, {
