@@ -148,11 +148,13 @@ async function loadZones(url) {
 
 // Hotels und Unterkünfte
 async function loadHotels(url) {
-    let response = await fetch(url);
-    let geojson = await response.json();
-    console.log(geojson);
+        let response = await fetch(url);
+        let geojson = await response.json();
+        console.log(geojson);
 
-    /*ADRESSE: "04., Wiedner Hauptstraße 27-29"
+    /*Workload 6: Franz Gatt
+    
+    ADRESSE: "04., Wiedner Hauptstraße 27-29"
     BETRIEB: "Erzherzog Rainer - Schick Hotels"
     BETRIEBSART: "H"
     BETRIEBSART_TXT: "Hotel"
@@ -176,17 +178,22 @@ async function loadHotels(url) {
         color: statusColor,
         radius: 50,
     }).addTo(map).bindPopup(popup);
+
+    mit einer if, else if, else Abfrage des Attributs BETRIEBSART sollt ihr das passende Icon ermitteln und verwenden. Unterschieden wird zwischen:
+    H - Hotel, Farbe PURPLE - #B10DC9, Icon hotel_0star
+    P - Pension, Farbe PURPLE - #B10DC9, Icon lodging_0star
+    A Appartment, Farbe PURPLE - #B10DC9, Icon apartment-2
     */
 
-    let overlay = L.featureGroup()
-    layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
-    overlay.addTo(map);
+        let overlay = L.featureGroup()
+        layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
+        overlay.addTo(map);
 
-    L.geoJSON(geojson, {
-        pointToLayer: function (geoJsonPoint, latlng) {
-            //L.marker(latlng).addTo(map)
-            //console.log(geoJsonPoint.properties);
-            let popup = `
+        L.geoJSON(geojson, {
+                    pointToLayer: function (geoJsonPoint, latlng) {
+                            //L.marker(latlng).addTo(map)
+                            //console.log(geoJsonPoint.properties);
+                            let popup = `
                 <strong>${geoJsonPoint.properties.BETRIEB}</strong><br>
                 Betriebsart: ${geoJsonPoint.properties.BETRIEBSART_TXT}<br>
                 Kategorie: ${geoJsonPoint.properties.KATEGORIE_TXT}<br>
@@ -195,21 +202,37 @@ async function loadHotels(url) {
                 E-Mail: ${geoJsonPoint.properties.KONTAKT_EMAIL}<br>
                 Homepage: ${geoJsonPoint.properties.WEBLINK1}<br>
             `;
-            return L.marker(latlng, {
-                icon: L.icon({
-                    iconUrl: "icons/hotel.png",
-                    iconAnchor: [16, 37],
-                    popupAnchor: [0, -37]
-                })
-            }).bindPopup(popup);
+            if (geoJsonPoint.properties.BETRIEBSART == "H"){
+                return L.marker(latlng, {
+                    icon: L.icon({
+                        iconUrl: `icons/hotel_0star.png`,
+                        iconAnchor: [16, 37],
+                        popupAnchor: [0, -37]
+                    })
+                }).bindPopup(popup);
+            } else if (geoJsonPoint.properties.BETRIEBSART == "P"){
+                return L.marker(latlng, {
+                    icon: L.icon({
+                        iconUrl: `icons/lodging_0star.png`,
+                        iconAnchor: [16, 37],
+                        popupAnchor: [0, -37]
+                    })
+                }).bindPopup(popup);
+            } else {
+                return L.marker(latlng, {
+                    icon: L.icon({
+                        iconUrl: `icons/apartment-2.png`,
+                        iconAnchor: [16, 37],
+                        popupAnchor: [0, -37]
+                    })
+                }).bindPopup(popup);
+            }
         }
     }).addTo(overlay);
-
-    // L.geoJSON(geojson).addTo(overlay);
 }
 
 loadSites("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
 loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json");
-//loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
-//loadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json");
+loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
+loadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json");
 loadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json");
