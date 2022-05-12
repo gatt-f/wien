@@ -170,7 +170,35 @@ async function loadZones(url) {
     layerControl.addOverlay(overlay, "Fußgängerzonen Wien");
     overlay.addTo(map);
 
-    L.geoJSON(geojson).addTo(overlay);
+    L.geoJSON(geojson, 
+        /*
+        style: function(feature) {
+            //console.log(feature)
+
+            let colors = {
+                "Red Line": "#FF4136",
+                "Yellow Line": "#FFDC00",
+                "Blue Line": "#0074D9",
+                "Green Line": "#2ECC40",
+                "Grey Line": "#AAAAAA",
+                "Orange Line": "#FF851B"
+            };
+
+            return {
+                color: `${colors[feature.properties.LINE_NAME]}`,
+                weight: 4,
+                dashArray: [10, 6]
+            }
+        }
+    }*/
+
+    ).bindPopup(function (layer) {
+        return`
+        <h4>Fußgägnerzone: ${layer.feature.properties.ADRESSE}</h4>
+        <p>${layer.feature.properties.ZEITRAUM}</p>
+        <p>${layer.feature.properties.AUSN_TEXT}</p>
+        `;
+    }).addTo(overlay);
 }
 
 // Hotels und Unterkünfte
