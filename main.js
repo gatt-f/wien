@@ -197,7 +197,12 @@ async function loadZones(url) {
 async function loadHotels(url) {
     let response = await fetch(url);
     let geojson = await response.json();
-    console.log(geojson);
+    console.log(geojson.features);
+
+    // Hotels nach Namen sortieren:
+    geojson.features.sort(function (a, b) {
+        return a.properties.BETRIEB.toLowerCase() > b.properties.BETRIEB.toLowerCase()
+    })
 
     /*Workload 6: Franz Gatt
     
@@ -283,15 +288,15 @@ async function loadHotels(url) {
         }
     }).addTo(overlay);
 
-// Button mit searchForm verknüpft
+    // Button mit searchForm verknüpft
     let form = document.querySelector("#searchForm");
     console.log(form.hotel);
-    form.suchen.onclick = function() {
+    form.suchen.onclick = function () {
         console.log(form.hotel.value);
-        hotelsLayer.eachLayer(function(marker){
+        hotelsLayer.eachLayer(function (marker) {
             //console.log(marker)
 
-            if(form.hotel.value == marker.feature.properties.BETRIEB){
+            if (form.hotel.value == marker.feature.properties.BETRIEB) {
                 //console.log(marker.getLatLng())
                 map.setView(marker.getLatLng(), 17)
                 marker.openPopup();
