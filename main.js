@@ -131,7 +131,7 @@ async function loadLines(url) {
     overlay.addTo(map);
 
     L.geoJSON(geojson, {
-        style: function(feature) {
+        style: function (feature) {
             //console.log(feature)
 
             let colors = {
@@ -150,7 +150,7 @@ async function loadLines(url) {
             }
         }
     }).bindPopup(function (layer) {
-        return`
+        return `
         <h4>${layer.feature.properties.LINE_NAME}</h4>
         von: ${layer.feature.properties.FROM_NAME}
         <br>
@@ -171,20 +171,20 @@ async function loadZones(url) {
     overlay.addTo(map);
 
     L.geoJSON(geojson, {
-        style: function(feature) {
-            //console.log(feature)
-            return {
-                //color: `${colors[feature.properties.LINE_NAME]}`,
-                color: "#F012BE",
-                weight: 1,
-                opacity: 0.1,
-                fillOpacity: 0.1
+            style: function (feature) {
+                //console.log(feature)
+                return {
+                    //color: `${colors[feature.properties.LINE_NAME]}`,
+                    color: "#F012BE",
+                    weight: 1,
+                    opacity: 0.1,
+                    fillOpacity: 0.1
+                }
             }
         }
-    }
 
     ).bindPopup(function (layer) {
-        return`
+        return `
         <h4>Fußgägnerzone: ${layer.feature.properties.ADRESSE}</h4>
         <p>${layer.feature.properties.ZEITRAUM || ""}</p>
         <p>${layer.feature.properties.AUSN_TEXT || ""}</p>
@@ -246,7 +246,6 @@ async function loadHotels(url) {
             console.log(document.querySelector("#searchList"))
             console.log(`<option value="${geoJsonPoint.properties.BETRIEB}"></option>`);
 
-
             let popup = `
                 <strong>${geoJsonPoint.properties.BETRIEB}</strong><br>
                 Betriebsart: ${geoJsonPoint.properties.BETRIEBSART_TXT}<br>
@@ -283,7 +282,7 @@ async function loadHotels(url) {
             }
         }
     }).addTo(overlay);
-    
+
 }
 
 loadSites("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
