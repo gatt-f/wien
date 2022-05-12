@@ -144,7 +144,7 @@ async function loadLines(url) {
             };
 
             return {
-                color: "green"
+                color: `${colors[feature.properties.LINE_NAME]}`
             }
         }
     }).bindPopup(function (layer) {
