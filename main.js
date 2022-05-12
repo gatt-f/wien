@@ -232,7 +232,7 @@ async function loadHotels(url) {
     A Appartment, Farbe PURPLE - #B10DC9, Icon apartment-2
     */
 
-    let overlay = L.featureGroup()
+    let overlay = L.markerClusterGroup();
     layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
     overlay.addTo(map);
 
@@ -276,6 +276,7 @@ async function loadHotels(url) {
             }
         }
     }).addTo(overlay);
+    
 }
 
 loadSites("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
