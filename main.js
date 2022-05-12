@@ -135,12 +135,12 @@ async function loadLines(url) {
             //console.log(feature)
 
             let colors = {
-                "Red Line": "red",
-                "Yellow Line": "yellow",
-                "Blue Line": "blue",
-                "Green Line": "green",
-                "Grey Line": "gray",
-                "Orange Line": "orange"
+                "Red Line": "#FF4136",
+                "Yellow Line": "#FFDC00",
+                "Blue Line": "#0074D9",
+                "Green Line": "#2ECC40",
+                "Grey Line": "#AAAAAA",
+                "Orange Line": "#FF851B"
             };
 
             return {
