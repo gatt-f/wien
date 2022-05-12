@@ -195,11 +195,12 @@ async function loadZones(url) {
     ).bindPopup(function (layer) {
         return`
         <h4>Fußgägnerzone: ${layer.feature.properties.ADRESSE}</h4>
-        <p>${layer.feature.properties.ZEITRAUM}</p>
-        <p>${layer.feature.properties.AUSN_TEXT}</p>
+        <p>${layer.feature.properties.ZEITRAUM || ""}</p>
+        <p>${layer.feature.properties.AUSN_TEXT || ""}</p>
         `;
     }).addTo(overlay);
 }
+// || entspricht oder, also wenn Feld "null" ist.
 
 // Hotels und Unterkünfte
 async function loadHotels(url) {
