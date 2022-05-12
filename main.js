@@ -170,27 +170,18 @@ async function loadZones(url) {
     layerControl.addOverlay(overlay, "Fußgängerzonen Wien");
     overlay.addTo(map);
 
-    L.geoJSON(geojson, 
-        /*
+    L.geoJSON(geojson, {
         style: function(feature) {
             //console.log(feature)
-
-            let colors = {
-                "Red Line": "#FF4136",
-                "Yellow Line": "#FFDC00",
-                "Blue Line": "#0074D9",
-                "Green Line": "#2ECC40",
-                "Grey Line": "#AAAAAA",
-                "Orange Line": "#FF851B"
-            };
-
             return {
-                color: `${colors[feature.properties.LINE_NAME]}`,
-                weight: 4,
-                dashArray: [10, 6]
+                //color: `${colors[feature.properties.LINE_NAME]}`,
+                color: "#F012BE",
+                weight: 1,
+                opacity: 0.1,
+                fillOpacity: 0.1
             }
         }
-    }*/
+    }
 
     ).bindPopup(function (layer) {
         return`
