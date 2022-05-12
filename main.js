@@ -232,7 +232,9 @@ async function loadHotels(url) {
     A Appartment, Farbe PURPLE - #B10DC9, Icon apartment-2
     */
 
-    let overlay = L.markerClusterGroup();
+    let overlay = L.markerClusterGroup({
+        diableClusteringAtZoom: 17
+    });
     layerControl.addOverlay(overlay, "Hotels und Unterkünfte");
     overlay.addTo(map);
 
