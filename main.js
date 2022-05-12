@@ -283,7 +283,7 @@ async function loadHotels(url) {
         }
     }).addTo(overlay);
 
-
+// Button mit searchForm verknüpft
     let form = document.querySelector("#searchForm");
     console.log(form.hotel);
     form.suchen.onclick = function() {
