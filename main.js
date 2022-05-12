@@ -130,7 +130,24 @@ async function loadLines(url) {
     layerControl.addOverlay(overlay, "Liniennetz Vienna Sightseeing");
     overlay.addTo(map);
 
-    L.geoJSON(geojson).bindPopup(function (layer) {
+    L.geoJSON(geojson, {
+        style: function(feature) {
+            console.log(feature)
+
+            let colors = {
+                "Red Line": "red",
+                "Yellow Line": "yellow",
+                "Blue Line": "blue",
+                "Green Line": "green",
+                "Grey Line": "gray",
+                "Orange Line": "orange"
+            };
+
+            return {
+                color: "green"
+            }
+        }
+    }).bindPopup(function (layer) {
         return`
         <h4>${layer.feature.properties.LINE_NAME}</h4>
         von: ${layer.feature.properties.FROM_NAME}
