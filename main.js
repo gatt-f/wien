@@ -292,11 +292,11 @@ async function loadHotels(url) {
             //console.log(marker)
 
             if(form.hotel.value == marker.feature.properties.BETRIEB){
-                console.log(marker.getLatLng())
+                //console.log(marker.getLatLng())
                 map.setView(marker.getLatLng(), 17)
                 marker.openPopup();
-                console.log(marker.getPopup())
-                console.log(marker.feature.properties.BETRIEB)
+                //console.log(marker.getPopup())
+                //console.log(marker.feature.properties.BETRIEB)
             }
         })
     }
