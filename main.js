@@ -241,7 +241,12 @@ async function loadHotels(url) {
     L.geoJSON(geojson, {
         pointToLayer: function (geoJsonPoint, latlng) {
             //L.marker(latlng).addTo(map)
-            //console.log(geoJsonPoint.properties);
+            let searchList = document.querySelector("#searchList");
+            searchList.innerHTML += `<option value="${geoJsonPoint.properties.BETRIEB}"></option>`;
+            console.log(document.querySelector("#searchList"))
+            console.log(`<option value="${geoJsonPoint.properties.BETRIEB}"></option>`);
+
+
             let popup = `
                 <strong>${geoJsonPoint.properties.BETRIEB}</strong><br>
                 Betriebsart: ${geoJsonPoint.properties.BETRIEBSART_TXT}<br>
