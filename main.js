@@ -132,7 +132,7 @@ async function loadLines(url) {
 
     L.geoJSON(geojson, {
         style: function(feature) {
-            console.log(feature)
+            //console.log(feature)
 
             let colors = {
                 "Red Line": "red",
