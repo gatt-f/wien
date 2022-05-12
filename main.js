@@ -296,7 +296,7 @@ async function loadHotels(url) {
                 map.setView(marker.getLatLng(), 17)
                 marker.openPopup();
                 //console.log(marker.getPopup())
-                //console.log(marker.feature.properties.BETRIEB)
+                console.log(marker.feature.properties.BETRIEB)
             }
         })
     }
